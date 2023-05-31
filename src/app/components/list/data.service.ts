@@ -10,7 +10,7 @@ export class DataService {
     private urlApi = 'http://localhost:5076/FileManager/View/File'
     constructor(private http: HttpClient) {}
 
-    getAllFiles(path: string = ''): Observable<IFile> {
+    getAllFiles(path = ''): Observable<IFile> {
         const url = `${this.urlApi}/${path}`
         console.log(url)
         return this.http.get<IFile>(`${this.urlApi}/${path}`)
