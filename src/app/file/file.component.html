@@ -1,10 +1,11 @@
-<div class="flex mt-5 ml-4">
-    <header>
+<div class="flex h-screen">
+    <header class="bg-slate-200 p-5">
+        <h1 class="text-3xl">File Manager</h1>
         <nav>
             <ul>
                 <li *ngFor="let m of menu" class="pb-5">
                     <button
-                        class="hover:bg-blue-100 text-black text-3xl font-bold py-2 px-4 w-full"
+                        class="hover:bg-slate-100 text-black text-3xl font-bold py-2 px-4 w-full text-left"
                     >
                         {{ m.name }}
                     </button>
@@ -12,21 +13,22 @@
             </ul>
         </nav>
     </header>
-    <main class="flex flex-col align-middle justify-center gap-2">
-        <div class="flex gap-2">
-            <button
-                (click)="handleClickRefresh()"
-                class="{{ this.snip ? 'animate-spin' : '' }}"
-            >
-                <img src="../../assets/Imagen/refresh.svg" alt="" />
+    <main class="flex flex-col align-middle p-2">
+        <div>
+            <button (click)="handleClickRefresh()" class="flex">
+                <img
+                    class="{{ this.snip ? 'animate-spin' : '' }}"
+                    src="../../assets/Imagen/refresh.svg"
+                    alt=""
+                />
+                <p>
+                    {{ this.snip ? "Refreshing..." : "Refresh" }}
+                </p>
             </button>
-            <p>
-                {{ this.snip ? "Refreshing..." : "Refresh" }}
-            </p>
         </div>
         <div>
-            <p class="text-lg opacity-30 font-bold">Folder</p>
-            <div class="grid grid-rows-2 grid-cols-3 gap-3 max-w-6xl">
+            <p class="text-4xl font-semibold pb-5">Folders</p>
+            <div class="grid grid-rows-2 grid-cols-5 gap-3 max-w-8xl">
                 <section
                     *ngFor="let directory of AllFiles.directory"
                     class="gap-1 flex align-middle p-2 border shadow-md hover:bg-blue-100"
@@ -34,7 +36,7 @@
                     <img src="../../assets/Imagen/folder.svg" alt="directory" />
                     <p
                         role="none"
-                        class="cursor-pointer text-3xl font-bold w-full"
+                        class="cursor-pointer text-3xl font-bold w-full self-center"
                         (click)="handleClickFileNext(directory)"
                     >
                         {{ directory }}
@@ -44,7 +46,7 @@
                     <img src="../../assets/Imagen/folder.svg" alt="folder" />
                     <p
                         role="none"
-                        class="cursor-pointer text-3xl font-bold w-full"
+                        class="cursor-pointer text-3xl font-bold w-full self-center"
                         (click)="handleClickFilePrev()"
                     >
                         ...
@@ -52,14 +54,16 @@
                 </div>
             </div>
             <div class="pt-2">
-                <p class="text-lg opacity-30 font-bold">Files</p>
+                <p class="text-4xl font-semibold pb-5">Files</p>
                 <div class="grid grid-rows-2 grid-cols-4 gap-3">
                     <section
                         *ngFor="let file of AllFiles.files"
-                        class="flex gap-1 align-middle p-2 border shadow-md hover:bg-blue-100"
+                        class="flex gap-1 align-middle p-2 border rounded-xl border-black shadow-md hover:bg-blue-100"
                     >
                         <img src="../../assets/Imagen/file.svg" alt="" />
-                        <p class="cursor-pointer text-3xl font-bold w-full">
+                        <p
+                            class="cursor-pointer text-3xl font-bold w-full self-center"
+                        >
                             {{ reduceTextSize(file) }}
                         </p>
                     </section>
