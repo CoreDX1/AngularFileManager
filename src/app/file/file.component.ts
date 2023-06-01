@@ -16,6 +16,13 @@ export class FileComponent implements OnInit {
         files: []
     };
 
+    public formatedFile: { [key: string]: string } = {
+        pdf: "../../assets/Imagen/pdf.svg",
+        doc: "../../assets/Imagen/doc.svg",
+        exe: "../../assets/Imagen/exe.svg",
+        js: "../../assets/Imagen/js.svg"
+    };
+
     public menu: IMenu[] = [
         { name: "Create" },
         { name: "Delete" },
@@ -33,6 +40,11 @@ export class FileComponent implements OnInit {
         this.DataSvc.getAllFiles(this.url).subscribe((data) => {
             this.AllFiles = data;
         });
+    }
+
+    public getIconPath(file: string): string {
+        const fileExtension = file.substring(file.lastIndexOf(".") + 1);
+        return this.formatedFile[fileExtension];
     }
 
     public handleClickRefresh(): void {

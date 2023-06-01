@@ -60,7 +60,7 @@
                         *ngFor="let file of AllFiles.files"
                         class="flex gap-1 align-middle p-2 border rounded-xl border-black shadow-md hover:bg-blue-100"
                     >
-                        <img src="../../assets/Imagen/file.svg" alt="" />
+                        <img [src]="getIconPath(file)" alt="" />
                         <p
                             class="cursor-pointer text-3xl font-bold w-full self-center"
                         >
